@@ -84,14 +84,15 @@ int main(string[] args)
 		resync = true;
 	}
 
-	if (resync || logout) {
+	if (resync) {
 		log.vlog("Deleting the saved status ...");
 		safeRemove(cfg.databaseFilePath);
 		safeRemove(cfg.deltaLinkFilePath);
 		safeRemove(cfg.uploadStateFilePath);
-		if (logout) {
-			safeRemove(cfg.refreshTokenFilePath);
-		}
+	}
+
+	if (logout) {
+		safeRemove(cfg.refreshTokenFilePath);
 	}
 
 	log.vlog("Initializing the OneDrive API ...");
